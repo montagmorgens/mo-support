@@ -1,4 +1,4 @@
-=== MONTAGMORGENS Admin Dashboard ===
+=== MONTAGMORGENS Support ===
 Contributors: herrschuessler
 Requires at least: 5.0.0
 Tested up to: 5.3.1
