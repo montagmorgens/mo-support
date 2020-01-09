@@ -104,20 +104,65 @@ final class Admin_Dashboard {
 	 *
 	 * Add `define( 'MO_SUPPORT', 'active' );` to `wp-config.php` for systems with active support contract
 	 * Add `define( 'MO_SUPPORT', 'free' );` to `wp-config.php` for systems within free support interval
+	 * Add `define( 'MO_SUPPORT_FREE_UNTIL', 'YYYY-MM-DD' );` to `wp-config.php` to set end date for free support period
 	 */
 	public function mo_dashboard_content() {
-		$support_contract = defined( 'MO_SUPPORT' ) ? MO_SUPPORT : false;
+		$support_contract   = defined( 'MO_SUPPORT' ) ? MO_SUPPORT : false;
+		$support_free_until = defined( 'MO_SUPPORT_FREE_UNTIL' ) ? MO_SUPPORT_FREE_UNTIL : false;
 
+		// Print info for active contracts.
 		if ( 'active' === $support_contract ) {
 			printf(
-				'<p><strong>%s</strong></p><p><span class="mo-support-tag mo-support-tag--active">%s</span></p><p>%s</p><p><hr>',
+				'<p><strong>%s</strong></p><p><span class="mo-support-tag mo-support-tag--active">%s</span></p><p>%s</p><hr>',
 				esc_html__( 'Ihr Wartungsvertrag', 'mo-support' ),
 				esc_html__( 'Wartungsvertrag aktiv', 'mo-support' ),
 				esc_html__( 'Wir halten Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an.', 'mo-support' ),
 			);
 		}
 
-		// Print contact info.
+		// Print info for free support.
+		if ( 'free' === $support_contract ) {
+
+			// Try to parse timestamp for end of support period.
+			$support_free_until = ( is_string( $support_free_until ) && strtotime( $support_free_until ) ) ? $support_free_until : false;
+
+			// Returns positive number for remainigs days, negative if past due date.
+			$remaining_days = (int) ( new \DateTime( 'midnight' ) )->diff( new \DateTime( $support_free_until ) )->format( '%r%a' );
+
+			// Set string indicating the number of remainig days.
+			$remaining_days_string = esc_html__( 'abgelaufen', 'mo-support' );
+
+			if ( 1 === $remaining_days ) {
+				$remaining_days_string = esc_html__( '– noch 1 Tag', 'mo-support' );
+			} elseif ( $remaining_days > 0 ) {
+				$remaining_days_string = sprintf(
+					/* translators: %s: number of days */
+					esc_html__( '– noch %s Tage', 'mo-support' ),
+					$remaining_days
+				);
+			}
+
+			// Print contract status.
+			printf(
+				'<p><strong>%1$s</strong></p><p><span class="mo-support-tag mo-support-tag--%5$s">%2$s %3$s</span></p><p>%4$s</p><hr>',
+				esc_html__( 'Ihr Wartungsvertrag', 'mo-support' ),
+				esc_html__( 'Kostenlose Wartungsperiode', 'mo-support' ),
+				$remaining_days_string,
+				esc_html__( 'In den ersten drei Monaten nach Launch Ihrer Website halten wir Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an. Im Anschluß bieten wir Ihnen diesen Service gerne im Rahmen eines Wartungsvertrags an. Wir melden uns vor Ablauf der kostenlosen Wartungsperiode dazu bei Ihnen.', 'mo-support' ),
+				( $remaining_days > 0 ) ? 'free' : 'none',
+			);
+		}
+
+		// Print info for no contract.
+		if ( ! $support_contract ) {
+			printf(
+				'<p><span class="mo-support-tag mo-support-tag--none">%s</span></p><p>%s</p><hr>',
+				esc_html__( 'Kein Wartungsvertrag aktiv', 'mo-support' ),
+				esc_html__( 'Bitte sorgen Sie dafür, dass Ihre WordPress-Installation aktuell und sicher bleibt und Backups erstellt werden. Gerne übernehmen wir dies im Rahmen eines Wartungsvertrags für Sie. Sprechen Sie uns einfach an!', 'mo-support' ),
+			);
+		}
+
+		// Print general contact info.
 		printf(
 			'<p><strong>%s</strong></p><p>%s</p>',
 			esc_html__( 'WordPress-Notfall?', 'mo-support' ),
