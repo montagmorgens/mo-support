@@ -1,0 +1,38 @@
+{
+  "root": {
+    "node": "./node_modules",
+    "src": "./",
+    "build": "./assets"
+  },
+  "actions": {
+    "watch": [
+      "css"
+    ],
+    "clean": [
+      "css"
+    ]
+  },
+  "tasks": {
+    "css": {
+      "src": "src/css",
+      "dest": "css",
+      "cssnano": {
+        "autoprefixer": {
+          "overrideBrowserslist": "> 0.5% in DE, last 2 versions, not IE > 0, not dead"
+        },
+        "zindex": false,
+        "reduceIdents": false,
+        "mergeIdents": false,
+        "discardUnused": false,
+        "discardComments": {
+          "removeAll": true
+        }
+      },
+      "extensions": [
+        "sass",
+        "scss",
+        "css"
+      ]
+    }
+  }
+}
