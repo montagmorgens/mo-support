@@ -1,0 +1,32 @@
+$color_brand: #e53200;
+$color_text: white;
+
+#mo_support {
+  // Style widget header.
+  .hndle {
+    color: $color_text;
+    background: $color_brand;
+  }
+
+  .accordion-section-title::after,
+  .handlediv,
+  .item-edit,
+  .postbox .handlediv.button-link,
+  .toggle-indicator {
+    color: $color_text;
+  }
+
+  // Style tag.
+  .mo-support-tag {
+    display: inline-block;
+    padding: .5em 1em;
+    text-transform: uppercase;
+    color: $color_text;
+    border-radius: 4px;
+    background: $color_brand;
+
+    &--active {
+      background: green;
+    }
+  }
+}
