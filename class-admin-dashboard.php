@@ -94,7 +94,8 @@ final class Admin_Dashboard {
 		\remove_meta_box( 'dashboard_secondary', 'dashboard', 'normal' ); // deprecated.
 		\remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
 		\remove_meta_box( 'dashboard_recent_drafts', 'dashboard', 'side' );
-		\remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' ); // Yoast SEO.
+		\remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' ); // Yoast SEO Plugin.
+		\remove_meta_box( 'tribe_dashboard_widget', 'dashboard', 'normal' ); // News from Modern Tribe – The Events Calendar Plugin.
 
 		\remove_action( 'welcome_panel', 'wp_welcome_panel' ); // Welcome panel.
 	}
