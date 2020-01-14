@@ -11,7 +11,7 @@
  * @wordpress-plugin
  * Plugin Name: MONTAGMORGENS Support
  * Description: Dieses Plugin stellt Support-Informationen von MONTAGMORGENS zur Verfügung.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      MONTAGMORGENS GmbH
  * Author URI:  https://www.montagmorgens.com/
  * License:     GNU General Public License v.2
@@ -45,7 +45,7 @@ if ( ! defined( 'Mo\Support\PLUGIN_PATH' ) ) {
  */
 final class Admin_Dashboard {
 
-	const PLUGIN_VERSION = '1.0.0';
+	const PLUGIN_VERSION = '1.0.1';
 
 	/**
 	 * The plugin singleton.
@@ -116,7 +116,7 @@ final class Admin_Dashboard {
 				'<p><strong>%s</strong></p><p><span class="mo-support-tag mo-support-tag--active">%s</span></p><p>%s</p><hr>',
 				esc_html__( 'Ihr Wartungsvertrag', 'mo-support' ),
 				esc_html__( 'Wartungsvertrag aktiv', 'mo-support' ),
-				esc_html__( 'Wir halten Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an.', 'mo-support' ),
+				esc_html__( 'Wir halten Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an.', 'mo-support' )
 			);
 		}
 
@@ -149,7 +149,7 @@ final class Admin_Dashboard {
 				esc_html__( 'Kostenlose Wartungsperiode', 'mo-support' ),
 				$remaining_days_string,
 				esc_html__( 'In den ersten drei Monaten nach Launch Ihrer Website halten wir Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an. Im Anschluß bieten wir Ihnen diesen Service gerne im Rahmen eines Wartungsvertrags an. Wir melden uns vor Ablauf der kostenlosen Wartungsperiode dazu bei Ihnen.', 'mo-support' ),
-				( $remaining_days > 0 ) ? 'free' : 'none',
+				( $remaining_days > 0 ) ? 'free' : 'none'
 			);
 		}
 
@@ -158,7 +158,7 @@ final class Admin_Dashboard {
 			printf(
 				'<p><span class="mo-support-tag mo-support-tag--none">%s</span></p><p>%s</p><hr>',
 				esc_html__( 'Kein Wartungsvertrag aktiv', 'mo-support' ),
-				esc_html__( 'Bitte sorgen Sie dafür, dass Ihre WordPress-Installation aktuell und sicher bleibt und Backups erstellt werden. Gerne übernehmen wir dies im Rahmen eines Wartungsvertrags für Sie. Sprechen Sie uns einfach an!', 'mo-support' ),
+				esc_html__( 'Bitte sorgen Sie dafür, dass Ihre WordPress-Installation aktuell und sicher bleibt und Backups erstellt werden. Gerne übernehmen wir dies im Rahmen eines Wartungsvertrags für Sie. Sprechen Sie uns einfach an!', 'mo-support' )
 			);
 		}
 
