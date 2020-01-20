@@ -1,0 +1,20 @@
+{
+  "name": "mo/support",
+  "description": "MONTAGMORGENS Support Plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Christoph Schüßler",
+      "email": "schuessler@montagmorgens.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Mo\\Support\\": "lib/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}

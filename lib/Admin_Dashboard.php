@@ -7,36 +7,12 @@
  * @author     Christoph Schüßler <schuessler@montagmorgens.com>
  * @license    https://www.gnu.org/licenses/gpl-2.0.txt GNU/GPLv2
  * @since      1.0.0
- *
- * @wordpress-plugin
- * Plugin Name: MONTAGMORGENS Support
- * Description: Dieses Plugin stellt Support-Informationen von MONTAGMORGENS zur Verfügung.
- * Version:     1.0.1
- * Author:      MONTAGMORGENS GmbH
- * Author URI:  https://www.montagmorgens.com/
- * License:     GNU General Public License v.2
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: mo-support
- * GitHub Plugin URI: montagmorgens/mo-support
  */
 
 namespace Mo\Support;
 
 // Don't call this file directly.
 defined( 'ABSPATH' ) || die();
-
-// Bail if not on admin screen.
-if ( ! is_admin() ) {
-	return;
-}
-
-// Define absolute path to plugin root.
-if ( ! defined( 'Mo\Support\PLUGIN_PATH' ) ) {
-	define( 'Mo\Support\PLUGIN_PATH', wp_normalize_path( plugin_dir_path( __FILE__ ) ) );
-}
-
-// Init plugin instance.
-\add_action( 'plugins_loaded', '\Mo\Support\Admin_Dashboard::get_instance' );
 
 /**
  * Plugin code.
@@ -81,7 +57,7 @@ final class Admin_Dashboard {
 	 * Enqueue plugin assets.
 	 */
 	public function enqueue_assets() {
-		\wp_enqueue_style( 'mo-support', \plugins_url( '/assets/css/mo-support-dashboard-widget.css', __FILE__ ), null, self::PLUGIN_VERSION );
+		\wp_enqueue_style( 'mo-support', PLUGIN_URL . '/assets/css/mo-support-dashboard-widget.css', null, self::PLUGIN_VERSION );
 	}
 
 	/**
