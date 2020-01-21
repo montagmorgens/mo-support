@@ -65,7 +65,8 @@ body.login {
 
   // Links below form
   #backtoblog a,
-  #nav a {
+  #nav a,
+  .privacy-policy-page-link a {
     color: $color_text;
     &:hover {
       color: $color_text_light;
