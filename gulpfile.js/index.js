@@ -1,15 +1,15 @@
 'use strict';
 
-const gulp = require('gulp');
-const requireDir = require('require-dir');
+const gulp = require( 'gulp' );
+const requireDir = require( 'require-dir' );
 
 // Require all tasks in gulpfile.js/tasks, including subfolders
-requireDir('./tasks', { recurse: true })
+requireDir( './tasks', { recurse: true } )
 
 // Asset Task runs all assets but JS
 gulp.task(
   'assets',
-  gulp.parallel('css')
+  gulp.parallel( 'css', 'images' )
 );
 
 // Build Task
@@ -24,5 +24,5 @@ gulp.task(
 // Default Task =  Dev Task
 gulp.task(
   'default',
-  gulp.series('clean', 'assets', 'watch')
+  gulp.series( 'clean', 'assets', 'watch' )
 );

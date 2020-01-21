@@ -1,0 +1,75 @@
+$color_brand: #fc431d;
+$color_text: #dadad6;
+$color_text_light: #fff;
+
+body.login {
+  background: $color_brand;
+
+  // Logo
+  h1 a {
+    font-size: 13px;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    text-indent: 0;
+    color: $color_text;
+    background: none;
+    &::before,
+    &::after {
+      display: block;
+      margin: 0 auto;
+      content: '';
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: 100%;
+    }
+    &::before {
+      width: 84px;
+      height: 84px;
+      margin-bottom: 20px;
+      background-image: url('../images/wordpress-logo.svg?ver=1.0.0');
+    }
+    &::after {
+      width: 218px;
+      height: 17px;
+      margin-top: 10px;
+      background-image: url('../images/montagmorgens-logo.svg?ver=1.0.0');
+    }
+    &:hover,
+    &:active {
+      color: $color_text;
+    }
+    &:focus {
+      color: $color_text;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .5);
+    }
+    span {
+      position: absolute !important;
+      overflow: hidden;
+      clip: rect(1px 1px 1px 1px);
+      clip: rect(1px, 1px, 1px, 1px);
+      width: 1px;
+      height: 1px;
+      white-space: nowrap;
+    }
+  }
+
+  // Form
+  form {
+    border-color: transparent;
+  }
+
+  // Links below form
+  #backtoblog a,
+  #nav a {
+    color: $color_text;
+    &:hover {
+      color: $color_text_light;
+    }
+    &:focus {
+      color: $color_text;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .5);
+    }
+  }
+}

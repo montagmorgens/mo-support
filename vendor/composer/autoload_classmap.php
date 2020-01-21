@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Mo\\Support\\Admin_Dashboard' => $baseDir . '/lib/Admin_Dashboard.php',
+    'Mo\\Support\\Login_Screen' => $baseDir . '/lib/Login_Screen.php',
 );

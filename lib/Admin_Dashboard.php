@@ -21,8 +21,6 @@ defined( 'ABSPATH' ) || die();
  */
 final class Admin_Dashboard {
 
-	const PLUGIN_VERSION = '1.0.1';
-
 	/**
 	 * The plugin singleton.
 	 *
@@ -57,7 +55,7 @@ final class Admin_Dashboard {
 	 * Enqueue plugin assets.
 	 */
 	public function enqueue_assets() {
-		\wp_enqueue_style( 'mo-support', PLUGIN_URL . '/assets/css/mo-support-dashboard-widget.css', null, self::PLUGIN_VERSION );
+		\wp_enqueue_style( 'mo-support', PLUGIN_URL . '/assets/css/mo-support-dashboard-widget.css', null, PLUGIN_VERSION );
 	}
 
 	/**

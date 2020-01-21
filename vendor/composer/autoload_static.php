@@ -22,6 +22,7 @@ class ComposerStaticInit3c623f84d44f2f7f393f1b07561c528c
 
     public static $classMap = array (
         'Mo\\Support\\Admin_Dashboard' => __DIR__ . '/../..' . '/lib/Admin_Dashboard.php',
+        'Mo\\Support\\Login_Screen' => __DIR__ . '/../..' . '/lib/Login_Screen.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

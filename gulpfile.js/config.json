@@ -6,10 +6,12 @@
   },
   "actions": {
     "watch": [
-      "css"
+      "css",
+      "images"
     ],
     "clean": [
-      "css"
+      "css",
+      "images"
     ]
   },
   "tasks": {
@@ -32,6 +34,17 @@
         "sass",
         "scss",
         "css"
+      ]
+    },
+    "images": {
+      "src": "src/images",
+      "dest": "images",
+      "extensions": [
+        "jpg",
+        "png",
+        "svg",
+        "gif",
+        "webp"
       ]
     }
   }
