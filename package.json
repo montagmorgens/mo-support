@@ -1,14 +1,14 @@
 {
   "name": "mo-support",
   "version": "1.1.2",
-  "description": "Mo WordPress-Support Plugin",
+  "description": "MONTAGMORGENS WordPress Support Plugin",
   "engines": {
     "node": "10.0.0",
     "npm": "6.0.0"
   },
   "scripts": {
     "dev": "NODE_ENV=development gulp --require @babel/register",
-    "build": "NODE_ENV=production gulp --require @babel/register",
+    "build": "NODE_ENV=production gulp --require @babel/register && composer dump-autoload",
     "build-js": "NODE_ENV=production gulp js --require @babel/register"
   },
   "devDependencies": {
