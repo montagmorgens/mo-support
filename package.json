@@ -1,6 +1,6 @@
 {
   "name": "mo-support",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "MONTAGMORGENS WordPress Support Plugin",
   "engines": {
     "node": "10.0.0",
@@ -12,15 +12,15 @@
     "build-js": "NODE_ENV=production gulp js --require @babel/register"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/register": "^7.8.3",
-    "ajv": "^6.11.0",
+    "@babel/core": "^7.8.7",
+    "@babel/register": "^7.8.6",
+    "ajv": "^6.12.0",
     "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-changed": "^4.0.2",
-    "gulp-imagemin": "^7.0.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-notify": "^3.2.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
