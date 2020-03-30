@@ -46,3 +46,4 @@ require_once \Mo\Support\PLUGIN_PATH . '/vendor/autoload.php';
 // Init plugin instances.
 \add_action( 'plugins_loaded', '\Mo\Support\Admin_Dashboard::get_instance' );
 \add_action( 'plugins_loaded', '\Mo\Support\Login_Screen::get_instance' );
+\add_action( 'plugins_loaded', '\Mo\Support\Recovery_Mode::get_instance' );
