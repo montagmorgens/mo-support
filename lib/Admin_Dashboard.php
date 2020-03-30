@@ -41,14 +41,35 @@ final class Admin_Dashboard {
 	}
 
 	/**
+	 * Support contract type.
+	 *
+	 * @var string/bool A support contract type, can be 'free', 'active', 'self' or false.
+	 */
+	protected static $support_contract = false;
+
+	/**
+	 * Free support period end date.
+	 *
+	 * @var string/bool self::$support_free_until Date in format YYYY-MM-DD.
+	 */
+	protected static $support_free_until = false;
+
+	/**
 	 * Constructor.
 	 */
 	private function __construct() {
 
+		self::$support_contract   = defined( 'MO_SUPPORT' ) ? MO_SUPPORT : false;
+		self::$support_free_until = defined( 'MO_SUPPORT_FREE_UNTIL' ) ? MO_SUPPORT_FREE_UNTIL : false;
+
 		// Add action hooks.
 		\add_action( 'admin_init', [ $this, 'remove_dashboard_widgets' ] );
-		\add_action( 'wp_dashboard_setup', [ $this, 'mo_dashboard' ] );
-		\add_action( 'admin_print_styles', [ $this, 'enqueue_assets' ] );
+
+		// Our own systems don't need the admin dashboard widget.
+		if ( 'self' !== self::$support_contract ) {
+			\add_action( 'wp_dashboard_setup', [ $this, 'mo_dashboard' ] );
+			\add_action( 'admin_print_styles', [ $this, 'enqueue_assets' ] );
+		}
 	}
 
 	/**
@@ -77,33 +98,22 @@ final class Admin_Dashboard {
 
 	/**
 	 * Print MONTAGMORGENS support dahsboard widget content.
-	 *
-	 * Add `define( 'MO_SUPPORT', 'active' );` to `wp-config.php` for systems with active support contract
-	 * Add `define( 'MO_SUPPORT', 'free' );` to `wp-config.php` for systems within free support interval
-	 * Add `define( 'MO_SUPPORT_FREE_UNTIL', 'YYYY-MM-DD' );` to `wp-config.php` to set end date for free support period
 	 */
 	public function mo_dashboard_content() {
-		$support_contract   = defined( 'MO_SUPPORT' ) ? MO_SUPPORT : false;
-		$support_free_until = defined( 'MO_SUPPORT_FREE_UNTIL' ) ? MO_SUPPORT_FREE_UNTIL : false;
-
-		// Print info for active contracts.
-		if ( 'active' === $support_contract ) {
+		if ( 'active' === self::$support_contract ) {
+			// Print info for active contracts.
 			printf(
 				'<p><strong>%s</strong></p><p><span class="mo-support-tag mo-support-tag--active">%s</span></p><p>%s</p><hr>',
 				esc_html__( 'Ihr Wartungsvertrag', 'mo-support' ),
 				esc_html__( 'Wartungsvertrag aktiv', 'mo-support' ),
 				esc_html__( 'Wir halten Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an.', 'mo-support' )
 			);
-		}
-
-		// Print info for free support.
-		if ( 'free' === $support_contract ) {
-
+		} elseif ( 'free' === self::$support_contract ) {
 			// Try to parse timestamp for end of support period.
-			$support_free_until = ( is_string( $support_free_until ) && strtotime( $support_free_until ) ) ? $support_free_until : false;
+			self::$support_free_until = ( is_string( self::$support_free_until ) && strtotime( self::$support_free_until ) ) ? self::$support_free_until : false;
 
 			// Returns positive number for remainigs days, negative if past due date.
-			$remaining_days = (int) ( new \DateTime( 'midnight' ) )->diff( new \DateTime( $support_free_until ) )->format( '%r%a' );
+			$remaining_days = (int) ( new \DateTime( 'midnight' ) )->diff( new \DateTime( self::$support_free_until ) )->format( '%r%a' );
 
 			// Set string indicating the number of remainig days.
 			$remaining_days_string = esc_html__( 'abgelaufen', 'mo-support' );
@@ -127,10 +137,8 @@ final class Admin_Dashboard {
 				esc_html__( 'In den ersten drei Monaten nach Launch Ihrer Website halten wir Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an. Im Anschluß bieten wir Ihnen diesen Service gerne im Rahmen eines Wartungsvertrags an. Wir melden uns vor Ablauf der kostenlosen Wartungsperiode dazu bei Ihnen.', 'mo-support' ),
 				( $remaining_days > 0 ) ? 'free' : 'none'
 			);
-		}
-
-		// Print info for no contract.
-		if ( ! $support_contract ) {
+		} else {
+			// Print info for no contract.
 			printf(
 				'<p><span class="mo-support-tag mo-support-tag--none">%s</span></p><p>%s</p><hr>',
 				esc_html__( 'Kein Wartungsvertrag aktiv', 'mo-support' ),
@@ -153,9 +161,15 @@ final class Admin_Dashboard {
 
 	/**
 	 * Add custom MONTAGMORGENS support dahsboard widget.
+	 *
+	 * Add `define( 'MO_SUPPORT', 'active' );` to `wp-config.php` for systems with active support contract
+	 * Add `define( 'MO_SUPPORT', 'free' );` to `wp-config.php` for systems within free support interval
+	 * Add `define( 'MO_SUPPORT', 'self' );` to `wp-config.php` for systems owned by MONTAGMORGENS GmbH
+	 * Add `define( 'MO_SUPPORT_FREE_UNTIL', 'YYYY-MM-DD' );` to `wp-config.php` to set end date for free support period
 	 */
 	public function mo_dashboard() {
 		global $wp_meta_boxes;
+
 		\add_meta_box(
 			'mo_support',
 			__( 'MONTAGMORGENS-Support', 'mo-dashboard' ),
