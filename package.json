@@ -12,9 +12,9 @@
     "build-js": "NODE_ENV=production gulp js --require @babel/register"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/register": "^7.9.0",
-    "ajv": "^6.12.0",
+    "@babel/core": "^7.11.4",
+    "@babel/register": "^7.10.5",
+    "ajv": "^6.12.4",
     "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
     "del": "^5.1.0",
@@ -23,7 +23,7 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-notify": "^3.2.0",
     "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^4.1.0",
     "gulp-touch-fd": "^2.0.0",
     "gulp-watch": "^5.0.0",
     "merge": "^1.2.1",
