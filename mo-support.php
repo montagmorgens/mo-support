@@ -11,7 +11,7 @@
  * @wordpress-plugin
  * Plugin Name: MONTAGMORGENS Support
  * Description: Dieses Plugin stellt Support-Informationen und Branding von MONTAGMORGENS zur Verfügung.
- * Version:     1.2.1
+ * Version:     1.3.0
  * Author:      MONTAGMORGENS GmbH
  * Author URI:  https://www.montagmorgens.com/
  * License:     GNU General Public License v.2
@@ -37,7 +37,7 @@ if ( ! defined( 'Mo\Support\PLUGIN_URL' ) ) {
 
 // Define plugin version.
 if ( ! defined( 'Mo\Support\PLUGIN_VERSION' ) ) {
-	define( 'Mo\Support\PLUGIN_VERSION', '1.2.1' );
+	define( 'Mo\Support\PLUGIN_VERSION', '1.3.0' );
 }
 
 // Require composer autoloader.
@@ -46,3 +46,4 @@ require_once \Mo\Support\PLUGIN_PATH . '/vendor/autoload.php';
 // Init plugin instances.
 \add_action( 'plugins_loaded', '\Mo\Support\Admin_Dashboard::get_instance' );
 \add_action( 'plugins_loaded', '\Mo\Support\Login_Screen::get_instance' );
+\add_action( 'plugins_loaded', '\Mo\Support\Support_Status::get_instance' );
