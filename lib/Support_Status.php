@@ -211,7 +211,7 @@ final class Support_Status {
 			$result['badge']['color'] = 'blue';
 			$result['description']    = sprintf(
 				'<p>%s</p>',
-				esc_html__( 'In den ersten drei Monaten nach Launch Ihrer Website halten wir Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an. Im Anschluß bieten wir Ihnen diesen Service gerne im Rahmen eines Wartungsvertrags an. Wir melden uns vor Ablauf der kostenlosen Wartungsperiode dazu bei Ihnen.', 'mo-support' ),
+				esc_html__( 'In den ersten drei Monaten nach Launch Ihrer Website halten wir Ihre WordPress-Installation immer auf dem neuesten Stand und legen tägliche Backups an. Im Anschluß bieten wir Ihnen diesen Service gerne im Rahmen eines Wartungsvertrags an. Wir melden uns vor Ablauf der kostenlosen Wartungsperiode dazu bei Ihnen.', 'mo-support' )
 			);
 		}
 
