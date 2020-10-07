@@ -57,6 +57,7 @@ final class Cleanup {
 
 		// iThemes Security.
 		if ( \is_plugin_active( 'better-wp-security/better-wp-security.php' ) ) {
+			// Enqueue kill stylesheet.
 			add_action(
 				'admin_enqueue_scripts',
 				function( $hook ) {
@@ -69,6 +70,7 @@ final class Cleanup {
 
 		// Yoast SEO.
 		if ( \is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+			// Enqueue kill stylesheet.
 			add_action(
 				'admin_enqueue_scripts',
 				function( $hook ) {
@@ -77,10 +79,23 @@ final class Cleanup {
 					}
 				}
 			);
+
+			// Kill Yoast notifications.
+			add_action(
+				'admin_init',
+				function() {
+					if ( class_exists( 'Yoast_Notification_Center' ) ) {
+						$yoast_nc = \Yoast_Notification_Center::get();
+						remove_action( 'admin_notices', array( $yoast_nc, 'display_notifications' ) );
+						remove_action( 'all_admin_notices', array( $yoast_nc, 'display_notifications' ) );
+					}
+				}
+			);
 		}
 
 		// Google Analytics Germanized.
 		if ( \is_plugin_active( 'ga-germanized/ga-germanized.php' ) ) {
+			// Enqueue kill stylesheet.
 			add_action(
 				'admin_enqueue_scripts',
 				function( $hook ) {
